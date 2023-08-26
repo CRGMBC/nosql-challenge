@@ -29,14 +29,18 @@ The Rating_value also needed to be amended to an integer.  This field has non-nu
 In the "NoSQL_analysis_starter.ipynb" notebook, I imported the libraries PyMongo, Pretty Print and Pandas and created an instance of Mongo Client.   Specific questions were asked and the following database exploration was performed to find the results.
 
 Question 1: Which establishments have a hygiene score equal to 20?
+
 I used a query to find the number of establishments with a hygiene score of exactly 20.  I used "count_documents" to calculate the answer of 41 and displayed the first document using Pretty Print.  The results were then converted to a Pandas dataframe, and the first 10 rows were displayed.
 
 Question 2: Which establishments in London have a "RatingValue" greater than or equal to 4? 
+
 I used a query to find the establishments with "London" in the "LocalAuthorityName" (using "$regex") as well as a "RatingValue" greather than or equal to 4 (using "$gte").  I used "count_documents" to calculate the answer of 33 and displayed the first document in ths results using Pretty Print.  The results were then converted to a Pandas dataframe and the first 10 rows were displayed.
 
 Question 3: What are the top 5 establishments with a "RatingValue" of '5', sorted by lowest hygiene score, nearest to the new restaurant added, "Penang Flavours"?
+
 Using Pretty Print, I found the latitude & longitude of "Penang Flavours".  I used a query to find the establishments with a "RatingValue" equal to 5 as well as longitude and latitude of up to 0.01 degree difference from the "Penange Flavours" longitude and latitude. 
  The results were then sorted in ascending order of the Hygiene score and limited to the top 5.  The results were then converted to a Pandas dataframe and all 5 rows were displayed.
 
 Question 4: How many establishments in each Local Authority area have a hygiene score of 0? Sort the results from highest to lowest, and print out the top ten local authority areas. 
+
 An aggregation pipeline was built to include a match query, group, and sort.  The match query was used to return all hygiene scores equal to zero.  The group query was used to count the number of documents by "LocalAuthorityName".  The sort query was used to sort the count of the documents in descending order.  The results from the aggregation query was cast as a list and saved to a results variable.  Pretty Print was used to print the first 10 results.  The results were then converted to a Pandas dataframe and normalised.  The first 10 rows were displayed.
